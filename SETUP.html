@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setup Guide - Football Tournament DB</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="setup-page">
+<div class="container">
+    <h1>⚽ Football Tournament Database</h1>
+    <p class="center">Setup Guide - SQL Query Demonstration Project</p>
+
+    <h2>📋 Prerequisites</h2>
+    <ul>
+        <li>XAMPP installed (with Apache and MySQL)</li>
+        <li>Web browser (Chrome, Firefox, Edge, etc.)</li>
+        <li>Basic understanding of SQL</li>
+    </ul>
+
+    <h2>🚀 Setup Instructions</h2>
+
+    <div class="step">
+        <h3>Step 1: Start XAMPP Services</h3>
+        <ol>
+            <li>Open XAMPP Control Panel</li>
+            <li>Click "Start" button for <strong>Apache</strong></li>
+            <li>Click "Start" button for <strong>MySQL</strong></li>
+            <li>Both should show green "Running" status</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>Step 2: Create Database</h3>
+        <ol>
+            <li>Open your browser</li>
+            <li>Navigate to: <code>http://localhost/phpmyadmin</code></li>
+            <li>Click "New" on the left sidebar</li>
+            <li>Database name: <code>football_tournament_db</code></li>
+            <li>Collation: <code>utf8mb4_general_ci</code></li>
+            <li>Click "Create"</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>Step 3: Import Database Schema</h3>
+        <ol>
+            <li>Click on the newly created database: <code>football_tournament_db</code></li>
+            <li>Click the "SQL" tab at the top</li>
+            <li>Open the file <code>setup.sql</code> in a text editor</li>
+            <li>Copy ALL the contents</li>
+            <li>Paste into the SQL query box in phpMyAdmin</li>
+            <li>Click "Go" button at the bottom right</li>
+            <li>You should see a success message and tables created</li>
+        </ol>
+    </div>
+
+    <div class="step success">
+        <h3>Step 4: Verify Installation</h3>
+        <p>After running the SQL script, you should see these tables:</p>
+        <ul>
+            <li>Tournament (4 records)</li>
+            <li>Team (10 records)</li>
+            <li>Player (70 records)</li>
+            <li>Game (8 records)</li>
+            <li>Goal (15 records)</li>
+            <li>CleanSheet (3 records)</li>
+            <li>Ranking (6 records)</li>
+            <li>TournamentMatch (8 records)</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3>Step 5: Access the Application</h3>
+        <ol>
+            <li>Make sure Apache and MySQL are running</li>
+            <li>Open your browser</li>
+            <li>Navigate to: <code>http://localhost/db_project/tournament_index.php</code></li>
+            <li>You should see the main page with query buttons</li>
+        </ol>
+        <div class="center">
+            <a href="tournament_index.php" class="btn">Open Application →</a>
+        </div>
+    </div>
+
+    <h2>🎯 How to Use</h2>
+
+    <div class="step">
+        <h3>Running Queries</h3>
+        <ol>
+            <li>Click any numbered button (1-15) to execute a predefined SQL query</li>
+            <li>The SQL query will be displayed above the results</li>
+            <li>Results are shown in a formatted table</li>
+            <li>Each button demonstrates a different SQL concept</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>Custom Queries</h3>
+        <ol>
+            <li>Scroll to button #16 "Custom SQL Query"</li>
+            <li>Type your own SQL query in the text area</li>
+            <li>Click "Execute" or press <code>Ctrl+Enter</code></li>
+            <li>Results will be displayed below</li>
+        </ol>
+        <p><strong>Example queries to try:</strong></p>
+        <div class="code-block">SELECT * FROM Team WHERE league_name = 'Premier League';</div>
+        <div class="code-block">SELECT name, position FROM Player WHERE team_id = 2;</div>
+        <div class="code-block">SELECT t1.name, t2.name, score_team1, score_team2 
+FROM Game g 
+JOIN Team t1 ON g.team1_id = t1.team_id 
+JOIN Team t2 ON g.team2_id = t2.team_id;</div>
+    </div>
+
+    <h2>🛠️ Troubleshooting</h2>
+
+    <div class="step warning">
+        <h3>Common Issues</h3>
+        
+        <p><strong>❌ "Database connection failed"</strong></p>
+        <ul>
+            <li>Make sure MySQL is running in XAMPP</li>
+            <li>Check database name is exactly: <code>football_tournament_db</code></li>
+            <li>Verify username is <code>root</code> and password is empty</li>
+        </ul>
+
+        <p><strong>❌ "Table doesn't exist"</strong></p>
+        <ul>
+            <li>Run the <code>setup.sql</code> script in phpMyAdmin</li>
+            <li>Make sure all tables were created successfully</li>
+        </ul>
+
+        <p><strong>❌ Blank page / 404 error</strong></p>
+        <ul>
+            <li>Check Apache is running in XAMPP</li>
+            <li>Verify URL is correct: <code>http://localhost/db_project/tournament_index.php</code></li>
+            <li>Make sure files are in: <code>C:\xampp\htdocs\db_project\</code></li>
+        </ul>
+
+        <p><strong>❌ Query errors</strong></p>
+        <ul>
+            <li>Check SQL syntax carefully</li>
+            <li>Verify table and column names are correct</li>
+            <li>Make sure to end queries with semicolon</li>
+        </ul>
+    </div>
+
+    <h2>📚 SQL Concepts Covered</h2>
+    <ul>
+        <li><strong>SELECT</strong> - Retrieve data from tables</li>
+        <li><strong>WHERE</strong> - Filter records based on conditions</li>
+        <li><strong>JOIN</strong> - Combine data from multiple tables</li>
+        <li><strong>COUNT, AVG, MAX, MIN</strong> - Aggregate functions</li>
+        <li><strong>GROUP BY</strong> - Group rows with same values</li>
+        <li><strong>HAVING</strong> - Filter grouped results</li>
+        <li><strong>ORDER BY</strong> - Sort results</li>
+        <li><strong>LIKE</strong> - Pattern matching</li>
+        <li><strong>BETWEEN</strong> - Range queries</li>
+        <li><strong>IN</strong> - Match multiple values</li>
+        <li><strong>DISTINCT</strong> - Get unique values</li>
+        <li><strong>UNION</strong> - Combine result sets</li>
+    </ul>
+
+    <div class="center" style="margin-top: 40px;">
+        <a href="tournament_index.php" class="btn">🚀 Start Using the Application</a>
+    </div>
+
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+    <p class="center" style="color: #666; font-size: 0.9em;">
+        Football Tournament Database - SQL Query Demonstration Project<br>
+        For educational purposes
+    </p>
+</div>
+</body>
+</html>
